@@ -21,7 +21,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/api")
 public class LoginController {
 
