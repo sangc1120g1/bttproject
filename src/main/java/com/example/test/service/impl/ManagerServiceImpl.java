@@ -4,6 +4,9 @@ import com.example.test.model.Manager;
 import com.example.test.repository.ManagerRepository;
 import com.example.test.service.base.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +47,10 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public List<Manager> findByName(String name) {
         return managerRepository.findManagerByNameContaining(name);
+    }
+
+    @Override
+    public List<Manager> findAll(Pageable pageable) {
+        return managerRepository.findAll(pageable).getContent();
     }
 }

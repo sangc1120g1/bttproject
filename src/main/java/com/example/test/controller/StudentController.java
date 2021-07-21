@@ -5,6 +5,7 @@ import com.example.test.service.base.AutoCodeService;
 import com.example.test.service.base.StudentService;
 import com.example.test.service.base.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,6 +31,12 @@ public class StudentController {
     @GetMapping("get")
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(studentService.findAll());
+    }
+
+    @GetMapping("get/{page}/{size}")
+    public ResponseEntity<?> findAll(@PathVariable("page") int page , @PathVariable("size") int size){
+        PageRequest pageable = PageRequest.of(page , size);
+        return ResponseEntity.ok( studentService.findAll((pageable)));
     }
 
     @PostMapping

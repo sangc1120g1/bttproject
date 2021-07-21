@@ -5,11 +5,14 @@ import com.example.test.service.base.AutoCodeService;
 import com.example.test.service.base.ManagerService;
 import com.example.test.service.base.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
+import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +34,12 @@ public class ManagerController {
     @GetMapping("get")
     public ResponseEntity<?> findAll(){
         return ResponseEntity.ok(managerService.findAll());
+    }
+
+    @GetMapping("get/{page}/{size}")
+    public ResponseEntity<?> findAll(@PathVariable("page") int page , @PathVariable("size") int size){
+        PageRequest pageable = PageRequest.of(page , size);
+        return ResponseEntity.ok( managerService.findAll((pageable)));
     }
 
     @PostMapping

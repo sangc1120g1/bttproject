@@ -4,6 +4,7 @@ import com.example.test.model.Student;
 import com.example.test.repository.StudentRepository;
 import com.example.test.service.base.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +45,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findByName(String name) {
         return studentRepository.findStudentByNameContaining(name);
+    }
+
+    @Override
+    public List<Student> findAll(Pageable pageable) {
+        return studentRepository.findAll(pageable).getContent();
     }
 }

@@ -63,7 +63,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/**");
         http.httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/api","/customer/get").permitAll()
+                .antMatchers("/api","/customer/get","/manager/get/**/**","/customer/get/**/**",
+                        "/salesman/get/**/**","/teacher/get/**/**"
+                        ,"/student/get/**/**",
+                        "/manager/get","/salesman/get","/teacher/get","/student/get").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
                 .usernameParameter("username")

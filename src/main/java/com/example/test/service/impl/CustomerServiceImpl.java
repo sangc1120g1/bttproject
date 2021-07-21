@@ -4,6 +4,7 @@ import com.example.test.model.Customer;
 import com.example.test.repository.CustomerRepository;
 import com.example.test.service.base.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +46,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Iterable<Customer> findCustomerLike(String username) {
         return customerRepository.findByNameContaining(username);
+    }
+
+    @Override
+    public List<Customer> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable).getContent();
     }
 }

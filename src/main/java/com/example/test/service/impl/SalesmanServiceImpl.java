@@ -4,6 +4,7 @@ import com.example.test.model.Salesman;
 import com.example.test.repository.SalesmanRepository;
 import com.example.test.service.base.SalesmanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,5 +45,10 @@ public class SalesmanServiceImpl implements SalesmanService {
     @Override
     public List<Salesman> findByName(String name) {
         return salesmanRepository.findByNameContaining(name);
+    }
+
+    @Override
+    public List<Salesman> findAll(Pageable pageable) {
+        return salesmanRepository.findAll(pageable).getContent();
     }
 }
