@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RequestMapping("customer")
 public class CustomerController {
 
