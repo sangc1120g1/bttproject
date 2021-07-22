@@ -6,6 +6,7 @@ import com.example.test.configure.jwtConfig.JwtAuthenticationFilter;
 import com.example.test.configure.jwtConfig.RestAuthenticationEntryPoint;
 import com.example.test.service.base.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -65,10 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST", "DELETE", "PUT")
-                .allowedHeaders("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
-                        "Access-Control-Request-Headers")
-                .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
+        registry.addMapping("/**").allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true)
                 .allowCredentials(true).maxAge(3600);
     }
 
