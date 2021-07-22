@@ -71,8 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 .allowedOriginPatterns("Content-Type", "X-Requested-With", "accept", "Origin", "Access-Control-Request-Method",
                         "Access-Control-Request-Headers")
                 .exposedHeaders("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials")
-                .allowCredentials(true)
-                .allowCredentials(true).maxAge(3600);
+                .allowCredentials(false).maxAge(3600);
     }
 
     @Override
